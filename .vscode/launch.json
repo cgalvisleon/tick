@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "tick",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/tick",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "GOTOOLCHAIN": "auto"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run All",
+      "configurations": ["tick"],
+      "stopAll": true
+    }
+  ]
+}

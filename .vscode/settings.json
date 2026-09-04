@@ -1,0 +1,9 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#bb14fd"
+  },
+  "go.lintTool": "golint",
+  "gopls": {
+    "ui.diagnostic.staticcheck": false
+  }
+}
