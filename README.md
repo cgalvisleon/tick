@@ -8,7 +8,7 @@ CLI en Go para llevar seguimiento simple de proyectos y tareas, con una ergonom�
 - `github.com/cgalvisleon/et` (se resuelve solo al compilar, vía `go.mod`; para fijar otra versión):
 
   ```sh
-  go get github.com/cgalvisleon/et@v1.0.32
+  go get github.com/cgalvisleon/et@v1.0.33
   ```
 
 ## Instalación / ejecución
