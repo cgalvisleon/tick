@@ -52,18 +52,24 @@ var taskCmd = &cobra.Command{
 			if err != nil {
 				return err
 			}
-			if !exists {
+			if exists {
+				if err := db.Task.Update(info.ID, kv); err != nil {
+					return err
+				}
+				return showTask(db, info.ID, "")
+			}
+			if id != "" {
 				return fmt.Errorf("tarea no encontrada")
 			}
-			if err := db.Task.Update(info.ID, kv); err != nil {
-				return err
-			}
-			return showTask(db, info.ID, "")
+			// code given but no task has it yet: fall through to create it below.
 		}
 
 		newCode := code
 		if newCode == "" {
 			return fmt.Errorf("se requiere code:<codigo> para crear una tarea nueva")
+		}
+		if kv["name"] == "" {
+			return fmt.Errorf("se requiere name:<nombre> para crear una tarea nueva")
 		}
 		if _, exists, _ := db.Task.Find("", newCode); exists {
 			return fmt.Errorf("ya existe una tarea con code %s", newCode)

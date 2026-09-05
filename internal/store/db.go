@@ -30,7 +30,7 @@ type DB struct {
 func Open(dir string) (*DB, error) {
 	path := filepath.Join(dir, "tick.db")
 
-	jdb, err := jsql.ConnectTo("tenant:tick", "local", jsql.DriverSqlite, path)
+	jdb, err := jsql.ConnectTo("tenant:tick", "local", jsql.DriverSqlite, path, false)
 	if err != nil {
 		return nil, fmt.Errorf("connecting to %s: %w", path, err)
 	}

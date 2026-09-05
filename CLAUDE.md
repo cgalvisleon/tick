@@ -19,7 +19,7 @@ gofmt -w .                      # format (standard across the cgalvisleon worksp
 go vet ./...                    # static checks
 ```
 
-`command.sh` wraps build/install: `./command.sh --build|--b`, `./command.sh --install|--i` (installs to `$GOBIN` or `$GOPATH/bin`), `./command.sh --help|--h`.
+`command.sh` wraps build/install: `./command.sh --build|--b`, `./command.sh --install|--i` (builds then `sudo cp`s the binary to `/usr/local/bin`), `./command.sh --help|--h`.
 
 There are no tests in this repo yet.
 

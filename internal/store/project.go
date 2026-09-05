@@ -1,6 +1,7 @@
 package store
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/cgalvisleon/et/et"
@@ -144,6 +145,18 @@ func (s *Project) Set(fields map[string]string) error {
 	}
 	if !exists {
 		return jsql.ErrRecordAlreadyExists
+	}
+
+	code := info.Code
+	if v, ok := fields["code"]; ok {
+		code = v
+	}
+	name := info.Name
+	if v, ok := fields["name"]; ok {
+		name = v
+	}
+	if code == "" || name == "" {
+		return fmt.Errorf("code y name son requeridos")
 	}
 
 	data := et.Json{"id": info.ID, "updated_at": time.Now()}

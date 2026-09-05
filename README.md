@@ -5,6 +5,8 @@ CLI en Go para llevar seguimiento simple de proyectos y tareas, con una ergonom�
 ## Requisitos
 
 - Go 1.25 o superior
+- Library Et:
+  go get github.com/cgalvisleon/et@v1.0.31
 
 ## Instalación / ejecución
 
@@ -86,21 +88,21 @@ Todos los comandos (excepto `init`) buscan el directorio `.tick/` más cercano s
 
 Los argumentos de "campo:valor" (`code:T1`, `status:done`, etc.) se pueden combinar libremente; las palabras sueltas sin `:` (como `tag` o `status`) actúan como subcomandos.
 
-| Comando                                                                              | Descripción                                                                                                          |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `tick init`                                                                          | Inicializa un proyecto tick en el directorio actual (`.tick/`)                                                       |
+| Comando                                                                              | Descripción                                                                                                            |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `tick init`                                                                          | Inicializa un proyecto tick en el directorio actual (`.tick/`)                                                         |
 | `tick config <key> [value]`                                                          | Lee o escribe la configuración del proyecto (guardada en `.tick/tick.db`), p. ej. `user.name` / `user.email` / `token` |
-| `tick project [campo:valor ...]`                                                     | Muestra o actualiza los datos del proyecto actual                                                                    |
-| `tick project tag <nombre> <valor>` / `tag remove <nombre>`                          | Agrega, actualiza o elimina un tag del proyecto                                                                      |
-| `tick task [ID:id\|code:codigo] [campo:valor ...]`                                   | Sin argumentos, lista las tareas; con identificador, crea o actualiza una tarea                                      |
-| `tick task ID:id\|code:codigo status`                                                | Muestra el historial de estados de una tarea                                                                         |
-| `tick task ID:id\|code:codigo tag <nombre> <valor>` / `tag remove <nombre>`          | Agrega, actualiza o elimina un tag de una tarea                                                                      |
-| `tick status ID:id\|code:codigo status:<estado> description:<texto> percent:<0-100>` | Registra un avance de estado para una tarea                                                                          |
-| `tick remote`                                                                        | Lista los remotes configurados                                                                                       |
-| `tick remote add <nombre> <path>`                                                    | Agrega o actualiza un remote (ruta del sistema de archivos)                                                          |
-| `tick remote remove <nombre>`                                                        | Elimina un remote                                                                                                    |
-| `tick push [remote]`                                                                 | Copia la base de datos local hacia el remote (por defecto `origin`); sobreescribe el remote por completo             |
-| `tick pull [remote]`                                                                 | Copia la base de datos del remote hacia el proyecto local (por defecto `origin`); sobreescribe lo local por completo |
+| `tick project [campo:valor ...]`                                                     | Muestra o actualiza los datos del proyecto actual                                                                      |
+| `tick project tag <nombre> <valor>` / `tag remove <nombre>`                          | Agrega, actualiza o elimina un tag del proyecto                                                                        |
+| `tick task [ID:id\|code:codigo] [campo:valor ...]`                                   | Sin argumentos, lista las tareas; con identificador, crea o actualiza una tarea                                        |
+| `tick task ID:id\|code:codigo status`                                                | Muestra el historial de estados de una tarea                                                                           |
+| `tick task ID:id\|code:codigo tag <nombre> <valor>` / `tag remove <nombre>`          | Agrega, actualiza o elimina un tag de una tarea                                                                        |
+| `tick status ID:id\|code:codigo status:<estado> description:<texto> percent:<0-100>` | Registra un avance de estado para una tarea                                                                            |
+| `tick remote`                                                                        | Lista los remotes configurados                                                                                         |
+| `tick remote add <nombre> <path>`                                                    | Agrega o actualiza un remote (ruta del sistema de archivos)                                                            |
+| `tick remote remove <nombre>`                                                        | Elimina un remote                                                                                                      |
+| `tick push [remote]`                                                                 | Copia la base de datos local hacia el remote (por defecto `origin`); sobreescribe el remote por completo               |
+| `tick pull [remote]`                                                                 | Copia la base de datos del remote hacia el proyecto local (por defecto `origin`); sobreescribe lo local por completo   |
 
 ### Estados de una tarea
 

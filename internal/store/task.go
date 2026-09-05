@@ -209,7 +209,7 @@ func (s *Task) Find(id, code string) (TaskInfo, bool, error) {
 		return TaskInfo{}, false, nil
 	}
 
-	info := toInfo(item.ToJson())
+	info := toInfo(item.Result)
 	tags, err := s.Tags(info.ID)
 	if err != nil {
 		return TaskInfo{}, false, err
@@ -240,6 +240,13 @@ func (s *Task) List() ([]TaskInfo, error) {
 * @return TaskInfo, error
 **/
 func (s *Task) Create(code string, fields map[string]string) (TaskInfo, error) {
+	if code == "" {
+		return TaskInfo{}, fmt.Errorf("code es requerido")
+	}
+	if fields["name"] == "" {
+		return TaskInfo{}, fmt.Errorf("name es requerido")
+	}
+
 	now := time.Now()
 	data := et.Json{
 		"id":         reg.UUID(),
@@ -251,11 +258,18 @@ func (s *Task) Create(code string, fields map[string]string) (TaskInfo, error) {
 	for k, v := range fields {
 		data[k] = v
 	}
-	item, err := s.store.Insert(data).One()
+	if _, err := s.store.Insert(data).One(); err != nil {
+		return TaskInfo{}, err
+	}
+
+	info, exists, err := s.Find("", code)
 	if err != nil {
 		return TaskInfo{}, err
 	}
-	return toInfo(item.ToJson()), nil
+	if !exists {
+		return TaskInfo{}, fmt.Errorf("no se pudo crear la tarea")
+	}
+	return info, nil
 }
 
 /**
@@ -266,6 +280,12 @@ func (s *Task) Create(code string, fields map[string]string) (TaskInfo, error) {
 func (s *Task) Update(id string, fields map[string]string) error {
 	if len(fields) == 0 {
 		return nil
+	}
+	if v, ok := fields["name"]; ok && v == "" {
+		return fmt.Errorf("name es requerido")
+	}
+	if v, ok := fields["code"]; ok && v == "" {
+		return fmt.Errorf("code es requerido")
 	}
 	data := et.Json{"id": id, "updated_at": time.Now()}
 	for k, v := range fields {
