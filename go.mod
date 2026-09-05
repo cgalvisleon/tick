@@ -3,7 +3,7 @@ module github.com/cgalvisleon/tick
 go 1.25.0
 
 require (
-	github.com/cgalvisleon/et v1.0.31
+	github.com/cgalvisleon/et v1.0.32
 	github.com/spf13/cobra v1.10.2
 )
 

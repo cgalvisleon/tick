@@ -6,7 +6,7 @@ CLI en Go para llevar seguimiento simple de proyectos y tareas, con una ergonom�
 
 - Go 1.25 o superior
 - Library Et:
-  go get github.com/cgalvisleon/et@v1.0.31
+  go get github.com/cgalvisleon/et@v1.0.32
 
 ## Instalación / ejecución
 
